@@ -25,6 +25,7 @@
              }
              .wrapper {
              background-color: ${colors[data.color].wrapperBackground};
+             /* ${colors[data.color]? */
              padding-top: 100px;
              }
              body {
@@ -32,13 +33,11 @@
              -webkit-print-color-adjust: exact !important;
              font-family: 'Cabin', sans-serif;
              }
-             /* what's main */
              main {
              background-color: #E9EDEE;
              height: auto;
              padding-top: 30px;
              }
-
              h1, h2, h3, h4, h5, h6 {
              font-family: 'BioRhyme', serif;
              margin: 0;
@@ -61,7 +60,6 @@
              h6 {
              font-size: 1.2em;
              }
-
              .photo-header {
              position: relative;
              margin: 0 auto;
@@ -75,7 +73,6 @@
              width: 95%;
              border-radius: 6px;
              }
-
              .photo-header img {
              width: 250px;
              height: 250px;
@@ -144,33 +141,62 @@
           </style>
           </head>
           <body>
-              <div class="photo-header">
-                  <h1>Hi!<br>My name is </h1>
+            <div class="photo-header">
+                <div class="photo-header img">
 
-              </div>
-              <div class="photo-header img">
+                </div>
+                <div class="wrapper">
+                    <h1>Hi!</h1> 
+                    <h2>My name is ${data.name}</h2>
+                    <h5>Currently @ Trilogy Education Service</h6>
+                </div>
+                <div class= "nav-link">
+                    <div class="links-nav">
+                        ${data.location}
+                    </div>
+                    <div class="links-nav">
+                        <a href=${data.url}>GitHub</a>
+                    </div>
+                    <div class="links-nav">
+                        <a href=${blog.url}>Blog</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="main">
+                <h3>I build things and teach people to code.</h3>
+                <div class="container">
+                    <div clas="row">
+                        <div class="col">
+                            <div class="card">
 
-              </div>
-              <div class="links-nav">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
 
-              </div>
-              <div class= "nav-link">
+                            </div>
+                        </div>                       
+                    </div>
 
-              </div>
+                    <div clas="row">
+                        <div class="col">
+                            <div class="card">
+
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+
               <div class="workExp-date">
 
               </div>
-              <div class="container">
-                  <div clas="row">
-                          <div class="col">
-
-                          </div>
-                          <div class="card">
-
-                          </div>
-                      </div>
-
-                  </div>
+              
 
               </div>
 
