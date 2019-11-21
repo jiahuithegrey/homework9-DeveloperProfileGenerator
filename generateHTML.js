@@ -34,7 +34,7 @@ function generateHTML(data) {
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
       <link href="https://fonts.googleapis.com/css?family=BioRhyme|Cabin&display=swap" rel="stylesheet">
-      <title>Document</title>
+      <title>${data.name}'s Profile</title>
       <style>
           @page {
             margin: 0;
@@ -196,38 +196,33 @@ function generateHTML(data) {
         </div>
         
         <div class="main">
-            <h3>${data.bio}</h3>
-            <div class="container">
-                <div clas="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <h3>Public Repositories</h3>
-                            <h4>${data.public_repo}</h4>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <h3>Followers</h3>
-                            <h4>${data.followers}</h4>
-                        </div>
-                    </div>
-                </div>
-            
-                <div clas="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <h3>Github Stars</h3>
-                            <h4>${data.starred_url_length}</h4>   
-                        </div>
-                    </div>                       
-                    <div class="col-md-6">
-                        <div class="card">
-                            <h3>Following</h3>
-                            <h4>${data.following}</h4>   
-                        </div>
-                    </div>
-                </div>
+          <div class="container">
+            <div class="row">
+              <h3 class="col">${data.bio}</h3>
             </div>
+            <div clas="row">
+              <div class="col">
+                <div class="card">
+                  <h3>Public Repositories</h3>
+                  <h4>${data.public_repo}</h4>
+                </div>
+                <div class="card">
+                  <h3>Followers</h3>
+                  <h4>${data.followers}</h4>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <h3>Github Stars</h3>
+                  <h4>${data.starred_url_length}</h4>   
+                </div>
+                <div class="card">
+                  <h3>Following</h3>
+                    <h4>${data.following}</h4>   
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </body>
   </html>`;

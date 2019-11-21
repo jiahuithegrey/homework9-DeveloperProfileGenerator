@@ -6,31 +6,48 @@ const writeFileAsync = util.promisify(fs.writeFile);
 // Require Puppeteer.
 const puppeteer = require("puppeteer");
 
-function promptUser(username, color) {
-  const {username} = await inquirer.prompt(
+function init() {
+  try {
+    const answer = await promptUser();
+    const html = generateHTML(answer);
+    generatePDF(html);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function promptUser(username, userColor) {
+  const username= await inquirer.prompt(
     {
       type: "input",
       message: "What's your GitHub username?",
       name: "username"
     });
-  const {color} = await inquirer.prompt(
+  username = username.toLowercase().trim();
+    //how to give {color} to linked css?
+  const userColor = await inquirer.prompt(
     {
       type: "list",
       message: "Which color do you Perfer?",
       name: "color",
       choices: ["green", "blue", "pink","red"]
     });
-    callAxios({username});
+    callAxios(username);
 }
 
 function callAxios({username}){
-  const profile = axios.get(`https://api.github.com/users/${username}`)
+  axios.get(`https://api.github.com/users/${username}`)
+  .then (generateHTML(res));
 };
 
-function generateHTML(profile){
+async function generateHTML(res){ //does it need to be async?
   const html = require("./generateHTML");
-  return html;
+  res.data.color = userColor;
+  htmlContent = generateHTML(res.data);
+  writeFileAsync("${username}_profile.html", htmlContent);
+  console.log("Successfully wrote to html");
 }
+
 //from https://pspdfkit.com/blog/2019/html-to-pdf-in-javascript/
 async function generatePDF() {
   // Launch a new browser session.
@@ -51,19 +68,7 @@ async function generatePDF() {
 
   await browser.close()
 }
-      
-function init() {
-  try {
-    const answer = await promptUser();
-    const html = generateHTML(answer);
-    await writeFileAsync("index.html", html);
-    console.log("Successfully wrote to html");
-    convertToPdf(html);
-  } catch (err) {
-    console.log(err);
-  }
-}
-
+    
 init();
 
 
