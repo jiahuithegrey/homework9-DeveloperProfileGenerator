@@ -170,5 +170,65 @@ function generateHTML(data) {
             zoom: .75; 
           } 
          }
-      </style>`
-        }
+      </style>
+      </head>
+      <body>
+        <div class="photo-header">
+            <div class="photo-header img">
+                <img src="${data.avatar_url}">
+            </div>
+            <div class="wrapper">
+                <h1>Hi!</h1> 
+                <h2>My name is ${data.name}</h2>
+                <h6>${data.company}</h6>
+            </div>
+            <div class= "nav-link">
+                <div class="links-nav">
+                    ${data.location}
+                </div>
+                <div class="links-nav">
+                    <a href=${data.url}>GitHub</a>
+                </div>
+                <div class="links-nav">
+                    <a href=${data.blog}>Blog</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main">
+            <h3>${data.bio}</h3>
+            <div class="container">
+                <div clas="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <h3>Public Repositories</h3>
+                            <h4>${data.public_repo}</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <h3>Followers</h3>
+                            <h4>${data.followers}</h4>
+                        </div>
+                    </div>
+                </div>
+            
+                <div clas="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <h3>Github Stars</h3>
+                            <h4>${data.starred_url_length}</h4>   
+                        </div>
+                    </div>                       
+                    <div class="col-md-6">
+                        <div class="card">
+                            <h3>Following</h3>
+                            <h4>${data.following}</h4>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </body>
+  </html>`;
+}
