@@ -6,7 +6,7 @@ const writeFileAsync = util.promisify(fs.writeFile);
 // Require Puppeteer.
 const puppeteer = require("puppeteer");
 
-function init() {
+async function init() {
   try {
     const answer = await promptUser();
     const html = generateHTML(answer);
@@ -17,7 +17,7 @@ function init() {
 }
 
 function promptUser(username, userColor) {
-  const username= await inquirer.prompt(
+  const username = inquirer.prompt(
     {
       type: "input",
       message: "What's your GitHub username?",
@@ -25,7 +25,7 @@ function promptUser(username, userColor) {
     });
   username = username.toLowercase().trim();
     //how to give {color} to linked css?
-  const userColor = await inquirer.prompt(
+  const userColor = inquirer.prompt(
     {
       type: "list",
       message: "Which color do you Perfer?",
@@ -61,10 +61,10 @@ async function generatePDF() {
   await page.pdf({ path: "invoice.pdf", format: 'letter' }, function(err){
     if (err){
       console.log(err);
-    }esle{
-      console.log("Successfully converted html to pdf!");
     }
-  });
+    console.log("Successfully converted html to pdf!");
+    }
+  );
 
   await browser.close()
 }
