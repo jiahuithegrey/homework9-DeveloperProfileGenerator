@@ -25,7 +25,7 @@ const colors = {
   }
 };
 
-function generateHTML(info) {
+function generateHTML(data) {
   return `<!DOCTYPE html>
 <html lang="en">
    <head>
@@ -34,9 +34,9 @@ function generateHTML(info) {
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
       <link href="https://fonts.googleapis.com/css?family=BioRhyme|Cabin&display=swap" rel="stylesheet">
-      <title>${info.name}'s Profile</title>
+      <title>${data.name}'s Profile</title>
       <style>
-        @page {
+          @page {
             margin: 0;
           }
          *,
@@ -52,7 +52,7 @@ function generateHTML(info) {
          height: 100%;
          }
          .wrapper {
-         background-color: ${colors[info.color].wrapperBackground};
+         background-color: ${colors[data.color].wrapperBackground};
          padding-top: 100px;
          }
          body {
@@ -94,8 +94,8 @@ function generateHTML(info) {
          display: flex;
          justify-content: center;
          flex-wrap: wrap;
-         background-color: ${colors[info.color].headerBackground};
-         color: ${colors[info.color].headerColor};
+         background-color: ${colors[data.color].headerBackground};
+         color: ${colors[data.color].headerColor};
          padding: 10px;
          width: 95%;
          border-radius: 6px;
@@ -106,7 +106,7 @@ function generateHTML(info) {
          border-radius: 50%;
          object-fit: cover;
          margin-top: -75px;
-         border: 6px solid ${colors[info.color].photoBorderColor};
+         border: 6px solid ${colors[data.color].photoBorderColor};
          box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
          }
          .photo-header h1, .photo-header h2 {
@@ -149,8 +149,8 @@ function generateHTML(info) {
          .card {
            padding: 20px;
            border-radius: 6px;
-           background-color: ${colors[info.color].headerBackground};
-           color: ${colors[info.color].headerColor};
+           background-color: ${colors[data.color].headerBackground};
+           color: ${colors[data.color].headerColor};
            margin: 20px;
          }
          
@@ -175,22 +175,22 @@ function generateHTML(info) {
       <body>
         <div class="photo-header">
             <div class="photo-header img">
-                <img src="${info.avatar_url}">
+                <img src="${data.avatar_url}">
             </div>
             <div class="wrapper">
                 <h1>Hi!</h1> 
-                <h2>My name is ${info.name}</h2>
-                <h6>${info.company}</h6>
+                <h2>My name is ${data.name}</h2>
+                <h6>${data.company}</h6>
             </div>
             <div class= "nav-link">
                 <div class="links-nav">
-                    ${info.location}
+                    ${data.location}
                 </div>
                 <div class="links-nav">
-                    <a href=${info.url}>GitHub</a>
+                    <a href=${data.url}>GitHub</a>
                 </div>
                 <div class="links-nav">
-                    <a href=${info.blog}>Blog</a>
+                    <a href=${data.blog}>Blog</a>
                 </div>
             </div>
         </div>
@@ -198,27 +198,27 @@ function generateHTML(info) {
         <div class="main">
           <div class="container">
             <div class="row">
-              <h3 class="col">${info.bio}</h3>
+              <h3 class="col">${data.bio}</h3>
             </div>
             <div clas="row">
               <div class="col">
                 <div class="card">
                   <h3>Public Repositories</h3>
-                  <h4>${info.public_repo}</h4>
+                  <h4>${data.public_repo}</h4>
                 </div>
                 <div class="card">
                   <h3>Followers</h3>
-                  <h4>${info.followers}</h4>
+                  <h4>${data.followers}</h4>
                 </div>
               </div>
               <div class="col">
                 <div class="card">
                   <h3>Github Stars</h3>
-                  <h4>${info.starred_url_length}</h4>   
+                  <h4>${data.starred_url_length}</h4>   
                 </div>
                 <div class="card">
                   <h3>Following</h3>
-                    <h4>${info.following}</h4>   
+                    <h4>${data.following}</h4>   
                 </div>
               </div>
             </div>

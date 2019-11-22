@@ -4,7 +4,7 @@ const axios = require("axios");
 const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
 // Require Puppeteer.
-const puppeteer = require("puppeteer");
+//const puppeteer = require("puppeteer");
 const questions = [
   {
     type: "input",
@@ -50,22 +50,22 @@ function generateHTML(res){
 }
 
 //from https://pspdfkit.com/blog/2019/html-to-pdf-in-javascript/
-async function generatePDF() {
+//async function generatePDF() {
   // Launch a new browser session.
-  const browser = await puppeteer.launch()
+  //const browser = await puppeteer.launch()
   // Open a new Page.
-  const page = await browser.newPage()
+  //const page = await browser.newPage()
   // Puppeteer’s setContent function, 
   //which takes the HTML that needs to get rendered on the site as an argument
-  await page.setContent(htmlContent);
+  //await page.setContent(htmlContent);
   // Store the PDF in a file named `invoice.pdf`.
-  await page.pdf({ path: "invoice.pdf", format: 'letter' }, err=>{
-    if (err){
-      console.log(err);
-    }
-  });
-    console.log("Successfully converted html to pdf!");
-    await browser.close();
-  }
+  // await page.pdf({ path: "invoice.pdf", format: 'letter' }, err=>{
+  //   if (err){
+  //     console.log(err);
+  //   }
+  // });
+  //   console.log("Successfully converted html to pdf!");
+  //   await browser.close();
+  // }
 
 
