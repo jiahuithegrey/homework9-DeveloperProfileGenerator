@@ -5,47 +5,48 @@ const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
 // Require Puppeteer.
 const puppeteer = require("puppeteer");
-
-async function init() {
-  try {
-    const answer = await promptUser();
-    const html = generateHTML(answer);
-    generatePDF(html);
-  } catch (err) {
-    console.log(err);
+const questions = [
+  {
+    type: "input",
+    message: "What's your GitHub username?",
+    name: "username"
+  },
+  {
+    type: "list",
+    message: "Which color do you Perfer?",
+    name: "color",
+    choices: ["green", "blue", "pink","red"]
   }
+]
+let userName;
+let userColor;
+let htmlContent;
+
+inquirer
+  .prompt(questions)
+  .then(function(userInput){ //what's this function about
+    const queryURL = `https://api.github.com/users/${userName}`;
+    userName = userInput.username;
+    userName = userName.toLowerCase().trim();
+    userColor = userInput.color;
+    return queryURL;
+  })
+  .then(callAxios(queryURL));
+
+function callAxios(url){
+  axios.get(url)
+  .then(function(res){
+    res.data.color = userColor; //why data?
+  });
+  generateHTML(res.data);  
 }
 
-function promptUser(username, userColor) {
-  const username = inquirer.prompt(
-    {
-      type: "input",
-      message: "What's your GitHub username?",
-      name: "username"
-    });
-  username = username.toLowercase().trim();
-    //how to give {color} to linked css?
-  const userColor = inquirer.prompt(
-    {
-      type: "list",
-      message: "Which color do you Perfer?",
-      name: "color",
-      choices: ["green", "blue", "pink","red"]
-    });
-    callAxios(username);
-}
-
-function callAxios({username}){
-  axios.get(`https://api.github.com/users/${username}`)
-  .then (generateHTML(res));
-};
-
-async function generateHTML(res){ //does it need to be async?
-  const html = require("./generateHTML");
-  res.data.color = userColor;
-  htmlContent = generateHTML(res.data);
-  writeFileAsync("${username}_profile.html", htmlContent);
+const generatehtml = require("./generateHTML");     
+function generateHTML(res){ 
+  htmlContent = generateHTML(res);
+  writeFileAsync(`${username}_profile.html`, htmlContent);
   console.log("Successfully wrote to html");
+  generatePDF(`${username}_profile.html`,`${username}_profile.pdf`);
 }
 
 //from https://pspdfkit.com/blog/2019/html-to-pdf-in-javascript/
@@ -54,21 +55,17 @@ async function generatePDF() {
   const browser = await puppeteer.launch()
   // Open a new Page.
   const page = await browser.newPage()
-
-  // Go to our invoice page that we serve on `localhost:8000`.
-  await page.goto('http://localhost:8000')
+  // Puppeteer’s setContent function, 
+  //which takes the HTML that needs to get rendered on the site as an argument
+  await page.setContent(htmlContent);
   // Store the PDF in a file named `invoice.pdf`.
-  await page.pdf({ path: "invoice.pdf", format: 'letter' }, function(err){
+  await page.pdf({ path: "invoice.pdf", format: 'letter' }, err=>{
     if (err){
       console.log(err);
     }
+  });
     console.log("Successfully converted html to pdf!");
-    }
-  );
-
-  await browser.close()
-}
-    
-init();
+    await browser.close();
+  }
 
 
