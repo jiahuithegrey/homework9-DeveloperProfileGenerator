@@ -18,39 +18,42 @@ const questions = [
     choices: ["green", "blue", "pink","red"]
   }
 ]
-let userName;
-let userColor;
-let htmlContent;
-
 inquirer
   .prompt(questions)
   .then(function(userInput){ //what's this function about
-    const queryURL = `https://api.github.com/users/${userName}`;
-    userName = userInput.username;
-    userName = userName.toLowerCase().trim();
-    userColor = userInput.color;
-    return queryURL;
-  })
-  .then(callAxios(queryURL));
 
-function callAxios(url){
-  axios.get(url)
-  .then(function(res){
-    res.data.color = userColor; //why data?
+  let userName = userInput.username;
+  userName = userName.toLowerCase().trim();
+  let userColor = userInput.color;
+
+  let data = {
+    username: userName,
+    color: userColor
+  }
+    callAxios(data)
   });
-  generateHTML(res.data);  
+  
+function callAxios(data){
+  const queryURL = `https://api.github.com/users/${data.username}`;
+  axios.get(queryURL)
+  .then(function(res){
+    //console.log(res);
+    res.data.color = data.color;
+    writeToHTML(res.data);  
+  });
 }
 
-const generatehtml = require("./generateHTML");     
-function generateHTML(res){ 
-  htmlContent = generateHTML(res);
-  writeFileAsync(`${username}_profile.html`, htmlContent);
+const generateHTML= require("./generateHTML");  
+
+function writeToHTML(res){ 
+  let htmlContent = generateHTML(res);
+  writeFileAsync(`${res.login}_profile.html`, htmlContent);
   console.log("Successfully wrote to html");
-  generatePDF(`${username}_profile.html`,`${username}_profile.pdf`);
+  //generatePDF(`${res.login}_profile.html`,`${res.login}_profile.pdf`);
 }
 
 //from https://pspdfkit.com/blog/2019/html-to-pdf-in-javascript/
-//async function generatePDF() {
+  //async function generatePDF() {
   // Launch a new browser session.
   //const browser = await puppeteer.launch()
   // Open a new Page.
@@ -59,13 +62,13 @@ function generateHTML(res){
   //which takes the HTML that needs to get rendered on the site as an argument
   //await page.setContent(htmlContent);
   // Store the PDF in a file named `invoice.pdf`.
-  // await page.pdf({ path: "invoice.pdf", format: 'letter' }, err=>{
-  //   if (err){
-  //     console.log(err);
-  //   }
-  // });
-  //   console.log("Successfully converted html to pdf!");
-  //   await browser.close();
-  // }
+  //await page.pdf({ path: "invoice.pdf", format: 'letter' }, err=>{
+     //if (err){
+      //console.log(err);
+  //    }
+  //  });
+  //    console.log("Successfully converted html to pdf!");
+  //    await browser.close();
+  //  }
 
 

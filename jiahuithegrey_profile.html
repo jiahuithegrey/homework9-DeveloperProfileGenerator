@@ -1,32 +1,4 @@
-const colors = {
-  green: {
-    wrapperBackground: "#E6E1C3",
-    headerBackground: "#C1C72C",
-    headerColor: "black",
-    photoBorderColor: "#black"
-  },
-  blue: {
-    wrapperBackground: "#5F64D3",
-    headerBackground: "#26175A",
-    headerColor: "white",
-    photoBorderColor: "#73448C"
-  },
-  pink: {
-    wrapperBackground: "#879CDF",
-    headerBackground: "#FF8374",
-    headerColor: "white",
-    photoBorderColor: "#FEE24C"
-  },
-  red: {
-    wrapperBackground: "#DE9967",
-    headerBackground: "#870603",
-    headerColor: "white",
-    photoBorderColor: "white"
-  }
-};
-
-function generateHTML(res) {
-  return `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
    <head>
       <meta charset="UTF-8" />
@@ -34,7 +6,7 @@ function generateHTML(res) {
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
       <link href="https://fonts.googleapis.com/css?family=BioRhyme|Cabin&display=swap" rel="stylesheet">
-      <title>${res.name}'s Profile</title>
+      <title>Jiahui Wang's Profile</title>
       <style>
           @page {
             margin: 0;
@@ -52,7 +24,7 @@ function generateHTML(res) {
          height: 100%;
          }
          .wrapper {
-         background-color: ${colors[res.color].wrapperBackground};
+         background-color: #E6E1C3;
          padding-top: 100px;
          }
          body {
@@ -94,8 +66,8 @@ function generateHTML(res) {
          display: flex;
          justify-content: center;
          flex-wrap: wrap;
-         background-color: ${colors[res.color].headerBackground};
-         color: ${colors[res.color].headerColor};
+         background-color: #C1C72C;
+         color: black;
          padding: 10px;
          width: 95%;
          border-radius: 6px;
@@ -106,7 +78,7 @@ function generateHTML(res) {
          border-radius: 50%;
          object-fit: cover;
          margin-top: -75px;
-         border: 6px solid ${colors[res.color].photoBorderColor};
+         border: 6px solid #black;
          box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
          }
          .photo-header h1, .photo-header h2 {
@@ -149,8 +121,8 @@ function generateHTML(res) {
          .card {
            padding: 20px;
            border-radius: 6px;
-           background-color: ${colors[res.color].headerBackground};
-           color: ${colors[res.color].headerColor};
+           background-color: #C1C72C;
+           color: black;
            margin: 20px;
          }
          
@@ -175,22 +147,22 @@ function generateHTML(res) {
       <body>
         <div class="photo-header">
             <div class="photo-header img">
-                <img src="${res.avatar_url}">
+                <img src="https://avatars0.githubusercontent.com/u/50674455?v=4">
             </div>
             <div class="wrapper">
                 <h1>Hi!</h1> 
-                <h2>My name is ${res.name}</h2>
-                <h6>${res.company}</h6>
+                <h2>My name is Jiahui Wang</h2>
+                <h6>null</h6>
             </div>
             <div class= "nav-link">
                 <div class="links-nav">
-                    ${res.location}
+                    Seattle
                 </div>
                 <div class="links-nav">
-                    <a href=${res.url}>GitHub</a>
+                    <a href=https://api.github.com/users/jiahuithegrey>GitHub</a>
                 </div>
                 <div class="links-nav">
-                    <a href=${res.blog}>Blog</a>
+                    <a href=https://jiahuithegrey.github.io/Portfolio/>Blog</a>
                 </div>
             </div>
         </div>
@@ -198,34 +170,32 @@ function generateHTML(res) {
         <div class="main">
           <div class="container">
             <div class="row">
-              <h3 class="col">${res.bio}</h3>
+              <h3 class="col">Software Engineer | Designer
+--> Full-Stack Software Developer with experience in HTML, CSS, JS, jQuery, and Node.js.</h3>
             </div>
             <div clas="row">
               <div class="col">
                 <div class="card">
                   <h3>Public Repositories</h3>
-                  <h4>${res.public_repo}</h4>
+                  <h4>undefined</h4>
                 </div>
                 <div class="card">
                   <h3>Followers</h3>
-                  <h4>${res.followers}</h4>
+                  <h4>4</h4>
                 </div>
               </div>
               <div class="col">
                 <div class="card">
                   <h3>Github Stars</h3>
-                  <h4>${res.starred_url_length}</h4>   
+                  <h4>undefined</h4>   
                 </div>
                 <div class="card">
                   <h3>Following</h3>
-                    <h4>${res.following}</h4>   
+                    <h4>9</h4>   
                 </div>
               </div>
             </div>
           </div>
         </div>
       </body>
-  </html>`;
-}
-
-module.exports = generateHTML;
+  </html>
