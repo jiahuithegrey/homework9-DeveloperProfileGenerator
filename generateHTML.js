@@ -56,7 +56,7 @@ function generateHTML(res) {
          padding-top: 100px;
          }
          body {
-       
+         background-color: white;
          -webkit-print-color-adjust: exact !important;
          font-family: 'Cabin', sans-serif;
          }
@@ -176,15 +176,13 @@ function generateHTML(res) {
       <body>
         <div class="wrapper">
           <div class="photo-header">
-            <div class="photo-header img">
-                <img src="${res.avatar_url}">
-            </div>
-            <div class="col">
-                <h1>Hi!</h1> 
-                <h2>My name is ${res.name}</h2>
-                <h6>${res.company}</h6>
-            </div>
-            <div class= "link-nav col">
+            <img src="${res.avatar_url}">
+            
+              <h1>Hi!</h1> 
+              <h2>My name is ${res.name}</h2>
+              <h6>Currently @ Trilogy Education Services</h6>
+
+            <div class= "links-nav">
               <div class="nav-link">
                 <h6><i class="fas fa-location-arrow"></i>${res.location}</h6>
               </div>
@@ -195,38 +193,36 @@ function generateHTML(res) {
                 <h6><i class="fas fa-rss"></i><a href=${res.blog}>Blog</a></h6>
               </div>
             </div>
-          </div>
           
-          <div class="main">
-            <div class="col">
-              <div class="row">
-                <h3>${res.bio}</h3>
-              </div>
-            </div>
-            <div class="col">
+          <main>
+            <div class="container">
+                <h3 class="col"><font color="black">${res.bio}</font></h3>
+                
               <div clas="row">
-                <div class="card">
-                  <h3>Public Repositories</h3>
-                  <h4>${res.public_repo}</h4>
+                <div class="col">
+                  <div class="card">
+                    <h3>Public Repositories</h3>
+                    <h4>${res.public_repo}</h4>
+                  </div>
+                  <div class="card">
+                    <h3>Followers</h3>
+                    <h4>${res.followers}</h4>
+                  </div>
                 </div>
-                <div class="card">
-                  <h3>Followers</h3>
-                  <h4>${res.followers}</h4>
-                </div>
-              </div>
 
-              <div clas="row">
-                <div class="card">
-                  <h3>Github Stars</h3>
-                  <h4>${res.starred_url_length}</h4>   
-                </div>
-                <div class="card">
-                  <h3>Following</h3>
-                  <h4>${res.following}</h4>   
+                <div class="col">
+                  <div class="card">
+                    <h3>Github Stars</h3>
+                    <h4>${res.public_gists}</h4>   
+                  </div>
+                  <div class="card">
+                    <h3>Followers</h3>
+                    <h4>${res.followers}</h4>   
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </main>
         </div>
       </body>
   </html>`;
