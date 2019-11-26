@@ -3,8 +3,7 @@ const fs = require("fs");
 const axios = require("axios");
 const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
-// Require Puppeteer.
-//const puppeteer = require("puppeteer");
+const pdf = require("html-pdf");
 const questions = [
   {
     type: "input",
@@ -18,6 +17,7 @@ const questions = [
     choices: ["green", "blue", "pink","red"]
   }
 ]
+
 inquirer
   .prompt(questions)
   .then(function(userInput){ //what's this function about?
@@ -48,11 +48,23 @@ const generateHTML= require("./generateHTML");
 function writeToHTML(res){ 
   let htmlContent = generateHTML(res);
   writeFileAsync(`${res.name}_profile.html`, htmlContent);
-  console.log("Successfully wrote to html");
-  //generatePDF(`${res.login}_profile.html`,`${res.login}_profile.pdf`);
+  console.log("Successfully wrote to html!");
+  printToPdf(htmlContent,res);
 }
 
+function printToPdf(html,res){
+  let options = { format: 'Letter' };
+  pdf.create(html, options).toFile(`${res.name}_profile.pdf`, function (err) {
+    if (err)
+      return console.log(err);
+    console.log("Successfully printed to pdf!");
+  });
+}
+
+
 //from https://pspdfkit.com/blog/2019/html-to-pdf-in-javascript/
+// Require Puppeteer.
+//const puppeteer = require("puppeteer");
   //async function generatePDF() {
   // Launch a new browser session.
   //const browser = await puppeteer.launch()
