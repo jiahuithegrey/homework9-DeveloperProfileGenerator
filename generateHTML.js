@@ -174,17 +174,17 @@ function generateHTML(res) {
       </head>
       
       <body>
-        <div class="wrapper>
+        <div class="wrapper">
           <div class="photo-header">
             <div class="photo-header img">
                 <img src="${res.avatar_url}">
             </div>
-            <div class="column">
+            <div class="col">
                 <h1>Hi!</h1> 
                 <h2>My name is ${res.name}</h2>
                 <h6>${res.company}</h6>
             </div>
-            <div class= "link-nav">
+            <div class= "link-nav col">
               <div class="nav-link">
                 <h6><i class="fas fa-location-arrow"></i>${res.location}</h6>
               </div>
