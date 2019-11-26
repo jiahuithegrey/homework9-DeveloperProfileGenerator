@@ -167,7 +167,7 @@ function generateHTML(res) {
 
          @media print { 
           body { 
-            zoom: .75;  
+            zoom: .6;  
           } 
          }
       </style>
