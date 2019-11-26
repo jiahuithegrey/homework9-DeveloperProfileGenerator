@@ -12,8 +12,8 @@ const colors = {
     photoBorderColor: "#73448C"
   },
   pink: {
-    wrapperBackground: "#879CDF",
-    headerBackground: "#FF8374",
+    wrapperBackground: "#879CDF", //purple
+    headerBackground: "#FF8374", //pink
     headerColor: "white",
     photoBorderColor: "#FEE24C"
   },
@@ -56,7 +56,7 @@ function generateHTML(res) {
          padding-top: 100px;
          }
          body {
-         background-color: white;
+       
          -webkit-print-color-adjust: exact !important;
          font-family: 'Cabin', sans-serif;
          }
@@ -88,26 +88,26 @@ function generateHTML(res) {
          font-size: 1.2em;
          }
          .photo-header {
-         position: relative;
-         margin: 0 auto;
-         margin-bottom: -50px;
-         display: flex;
-         justify-content: center;
-         flex-wrap: wrap;
-         background-color: ${colors[res.color].headerBackground};
-         color: ${colors[res.color].headerColor};
-         padding: 10px;
-         width: 95%;
-         border-radius: 6px;
+            position: relative;
+            margin: 0 auto;
+            margin-bottom: -50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            background-color: ${colors[res.color].headerBackground};
+            color: ${colors[res.color].headerColor};
+            padding: 10px;
+            width: 95%;
+            border-radius: 6px;
          }
          .photo-header img {
-         width: 250px;
-         height: 250px;
-         border-radius: 50%;
-         object-fit: cover;
-         margin-top: -75px;
-         border: 6px solid ${colors[res.color].photoBorderColor};
-         box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-top: -75px;
+            border: 6px solid ${colors[res.color].photoBorderColor};
+            box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
          }
          .photo-header h1, .photo-header h2 {
          width: 100%;
@@ -172,36 +172,39 @@ function generateHTML(res) {
          }
       </style>
       </head>
+      
       <body>
-        <div class="photo-header">
+        <div class="wrapper>
+          <div class="photo-header">
             <div class="photo-header img">
                 <img src="${res.avatar_url}">
             </div>
-            <div class="wrapper">
+            <div class="column">
                 <h1>Hi!</h1> 
                 <h2>My name is ${res.name}</h2>
                 <h6>${res.company}</h6>
             </div>
-            <div class= "nav-link">
-                <div class="links-nav">
-                    ${res.location}
-                </div>
-                <div class="links-nav">
-                    <a href=${res.url}>GitHub</a>
-                </div>
-                <div class="links-nav">
-                    <a href=${res.blog}>Blog</a>
-                </div>
+            <div class= "link-nav">
+              <div class="nav-link">
+                <h6><i class="fas fa-location-arrow"></i>${res.location}</h6>
+              </div>
+              <div class="nav-link">
+                <h6><i class="fab fa-github"></i><a href=${res.url}>GitHub</a></h6>
+              </div>
+              <div class="nav-link">
+                <h6><i class="fas fa-rss"></i><a href=${res.blog}>Blog</a></h6>
+              </div>
             </div>
-        </div>
-        
-        <div class="main">
-          <div class="container">
-            <div class="row">
-              <h3 class="col">${res.bio}</h3>
+          </div>
+          
+          <div class="main">
+            <div class="col">
+              <div class="row">
+                <h3>${res.bio}</h3>
+              </div>
             </div>
-            <div clas="row">
-              <div class="col">
+            <div class="col">
+              <div clas="row">
                 <div class="card">
                   <h3>Public Repositories</h3>
                   <h4>${res.public_repo}</h4>
@@ -211,14 +214,15 @@ function generateHTML(res) {
                   <h4>${res.followers}</h4>
                 </div>
               </div>
-              <div class="col">
+
+              <div clas="row">
                 <div class="card">
                   <h3>Github Stars</h3>
                   <h4>${res.starred_url_length}</h4>   
                 </div>
                 <div class="card">
                   <h3>Following</h3>
-                    <h4>${res.following}</h4>   
+                  <h4>${res.following}</h4>   
                 </div>
               </div>
             </div>

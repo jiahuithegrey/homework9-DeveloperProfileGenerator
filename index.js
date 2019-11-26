@@ -20,7 +20,7 @@ const questions = [
 ]
 inquirer
   .prompt(questions)
-  .then(function(userInput){ //what's this function about
+  .then(function(userInput){ //what's this function about?
 
   let userName = userInput.username;
   userName = userName.toLowerCase().trim();
@@ -37,7 +37,7 @@ function callAxios(data){
   const queryURL = `https://api.github.com/users/${data.username}`;
   axios.get(queryURL)
   .then(function(res){
-    //console.log(res);
+    console.log(res);
     res.data.color = data.color;
     writeToHTML(res.data);  
   });
@@ -47,7 +47,7 @@ const generateHTML= require("./generateHTML");
 
 function writeToHTML(res){ 
   let htmlContent = generateHTML(res);
-  writeFileAsync(`${res.login}_profile.html`, htmlContent);
+  writeFileAsync(`${res.name}_profile.html`, htmlContent);
   console.log("Successfully wrote to html");
   //generatePDF(`${res.login}_profile.html`,`${res.login}_profile.pdf`);
 }
